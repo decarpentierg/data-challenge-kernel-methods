@@ -8,7 +8,7 @@ The metric is the AUC (area under curve). The data contains 2 classes.
  
  Ex: 
  ```
- Id,Prediction 
+ Id, Prediction 
  1, -1.1 
  2, 3.2 
  3, -2.4 
@@ -42,5 +42,6 @@ classifier.train(train_labels,train_graphs)
 test_preds = classifier.predict(test_graphs) 
 Yte = {'Prediction' : test_preds} 
 dataframe = pd.DataFrame(Yte) 
-dataframe.index += 1 dataframe.to_csv('test_pred.csv',index_label='Id') 
+dataframe.index += 1 
+dataframe.to_csv('test_pred.csv',index_label='Id') 
 ```
