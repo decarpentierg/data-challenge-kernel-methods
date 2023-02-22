@@ -2,11 +2,21 @@ The evaluation page describes how submissions will be scored and how students sh
 
 The metric is the AUC (area under curve). The data contains 2 classes. 
 
-##Submission Format
+## Submission Format
 
  Submission files should contain two columns: Id and Prediction. The file should contain a header and have the format described below. Id represents the identifier of the test example, ranging from 1 to 2000. The prediction is the corresponding logit which is a real number.
  
- Ex: ```Id,Prediction 1, -1.1 2, 3.2 3, -2.4 4,-0.5 5,2.1 6,0.1 7,-0.9 ``` 
+ Ex: 
+ ```
+ Id,Prediction 
+ 1, -1.1 
+ 2, 3.2 
+ 3, -2.4 
+ 4,-0.5 
+ 5,2.1 
+ 6,0.1 
+ 7,-0.9
+ ``` 
  
  Below, you will also find a piece of code for reading/writing the data. 
  
