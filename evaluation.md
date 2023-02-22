@@ -12,11 +12,11 @@ The metric is the AUC (area under curve). The data contains 2 classes.
  1, -1.1 
  2, 3.2 
  3, -2.4 
- 4,-0.5 
- 5,2.1 
- 6,0.1 
- 7,-0.9
- ``` 
+ 4, -0.5 
+ 5, 2.1 
+ 6, 0.1 
+ 7, -0.9
+ ```
  
  Below, you will also find a piece of code for reading/writing the data. 
  
