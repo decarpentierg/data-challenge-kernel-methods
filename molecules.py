@@ -81,6 +81,17 @@ class Molecule(nx.classes.graph.Graph):
         nx.set_node_attributes(relabeled_graph, new_node_labels, name='labels')
         return Molecule(relabeled_graph), relabeling_dct, next_lbl
     
+    def node_label_frequencies(self):
+        """Return dictionary of number of occurences of each node label.
+        """
+        res = {}
+        for _, lbl in self.atoms:
+            if not lbl in res:
+                res[lbl] = 1
+            else:
+                res[lbl] += 1
+        return res
+    
     def plot(self, show_node_indices=False, **kwargs):
         """
         Plot molecule as graph.
