@@ -36,13 +36,11 @@ class KernelSVC:
         self.C = C
         self.epsilon = epsilon
     
-    def fit(self, X, y):
+    def fit(self, y):
         """Fit the model. 
         
         Parameters
         ----------
-        X: ndarray of shape (N, d)
-            data points
         y: ndarray of shape (N,)
             labels (-1 or 1)
         """
@@ -51,7 +49,7 @@ class KernelSVC:
         # ---------------------------
 
         N = len(y)
-        K = self.kernel(X, X)
+        K = self.kernel
         JAC_INEQ = np.ones((2 * N, N))  # Jacobian for the inequality constraints
         JAC_INEQ[:N] = np.diag(y)
         JAC_INEQ[N:] = -np.diag(y)
@@ -94,7 +92,7 @@ class KernelSVC:
         # -----------------
 
         # support vectors and coefficients
-        self.support = X[alpha * y > self.epsilon]
+        self.support = alpha * y > self.epsilon
         self.alpha = alpha[alpha * y > self.epsilon]
         
         # offset
@@ -102,7 +100,7 @@ class KernelSVC:
         on_margin = np.logical_and(alpha * y > self.epsilon, alpha * y < self.C - self.epsilon)
         self.b = np.median(y[on_margin] - f[on_margin])
     
-    def predict(self, X):
+    def predict(self, kernel):
         """Predict label values in {-1, 1} for new data points (after model has been fitted).
         
         Parameters
@@ -113,7 +111,7 @@ class KernelSVC:
         Returns: ndarray of shape (N,)
             predicted labels
         """
-        K = self.kernel(self.support, X)
+        K = kernel
         return 2 * (self.alpha @ K + self.b > 0) - 1
 
 
