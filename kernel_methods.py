@@ -123,15 +123,14 @@ class KernelPCA:
         self.kernel = kernel
         self.alpha = None  # Matrix of shape (N, r) representing the top r eingenvectors
         self.lmbda = None  # Vector of size r representing the top r eingenvalues
-        self.support = None  # Data points where the features are evaluated
         self.r = r  # Number of principal components
         
-    def compute_PCA(self, X):
+    def compute_PCA(self):
         
         # Compute Gram matrix and center it
-        N = X.shape[0]
+        N = self.kernel.shape[0]
         center = np.eye(N) - np.ones((N, N)) / N # centering matrix
-        K = self.kernel(X, X)  # shape (N, N), Gram matrix
+        K = self.kernel  # shape (N, N), Gram matrix
         Kc = center @ K @ center  # center Gram matrix
         
         # Compute top r eigenvalues
@@ -140,16 +139,15 @@ class KernelPCA:
         idx = np.argsort(w)[::-1][:self.r]  # indices of r largest eigenvalues
         
         # Assign the vectors
-        self.support = X
         self.lmbda = w[idx]  # shapes (r,)
         self.alpha = v[:, idx]  # shapes (N, r)
         
-    def transform(self, x):
+    def transform(self, kernel):
         # Input : matrix x of shape (M, d)
         # Output: matrix of shape(M, r)
         
-        K1 = self.kernel(self.support, self.support)  # shape (N, N)
-        K2 = self.kernel(x, self.support)  # shape (M, N)
+        K1 = self.kernel  # shape (N, N)
+        K2 = kernel # shape (M, N)
         
         K = K2 - np.mean(K2, axis=1, keepdims=True) - np.mean(K1, axis=0) + np.mean(K1) 
         
