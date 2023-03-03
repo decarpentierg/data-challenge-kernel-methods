@@ -45,6 +45,6 @@ def process(indices_pair):
 # Compute kernels
 
 indices = list(itertools.product(range(start1, stop1), range(start2, stop2)))
-kernel_values = process_map(process, indices)
+kernel_values = process_map(process, indices, chunksize=100)
 
-np.savez_compressed(args.indices, indices=indices, kernel_values=kernel_values)
+np.savez_compressed(f'kernels/{args.indices}', indices=indices, kernel_values=kernel_values)
