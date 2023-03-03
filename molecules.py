@@ -79,7 +79,7 @@ class Molecule(nx.classes.graph.Graph):
         # create relabeld copy of Molecule
         relabeled_graph = self.copy()
         nx.set_node_attributes(relabeled_graph, new_node_labels, name='labels')
-        return Molecule(relabeled_graph), relabeling_dct
+        return Molecule(relabeled_graph), relabeling_dct, next_lbl
     
     def plot(self, show_node_indices=False, **kwargs):
         """
