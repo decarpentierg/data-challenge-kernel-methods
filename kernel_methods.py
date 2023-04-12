@@ -1,5 +1,5 @@
 import numpy as np
-
+from tqdm import tqdm
 
 class SVM():
     """Kernel SVC fitted with SMO.
@@ -62,7 +62,7 @@ class SVM():
         L = 0
         H = 0
         E = np.zeros(n_samples)
-        for iteration in range(self.max_iter):
+        for iteration in tqdm(range(self.max_iter), "iteration / max number of iterations"):
             num_changed_alphas = 0
             for i in range(n_samples):
                 E[i] = b + np.sum(alpha * y * K[i]) - y[i]

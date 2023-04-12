@@ -57,7 +57,7 @@ K_test = np.load("kernels/wlsk_test.npy")
 
 np.random.seed(44)
 
-svc = SVM(C=1.0)
+svc = SVM(C=0.03)
 print("Fitting SVC...")
 svc.fit(K, training_labels)
 
@@ -77,4 +77,4 @@ pred = svc.decision_function(K_test.T)
 Yte = {"Predicted": pred}
 dataframe = pd.DataFrame(Yte)
 dataframe.index += 1
-dataframe.to_csv("test_pred_3.csv", index_label="Id")
+dataframe.to_csv("test_pred.csv", index_label="Id")

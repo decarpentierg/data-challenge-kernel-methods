@@ -1,6 +1,3 @@
-import networkx as nx
-import numpy as np
-
 def histogram_kernel(mol1, mol2):
     freq1 = mol1.node_label_frequencies()
     freq2 = mol2.node_label_frequencies()
